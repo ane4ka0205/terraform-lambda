@@ -18,5 +18,8 @@ jobs:
               run: |
                 echo "USERNAME=$(jq .result.username ./test.json | xargs)" >> $GITHUB_ENV
                 env
+            - name: Test
+              run: echo $USERNAME
+                  
               
         
