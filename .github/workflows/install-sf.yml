@@ -19,5 +19,5 @@ jobs:
                 node_modules/sfdx-cli/bin/run --version
             - name: Check login
               run: 
-                node_modules/sfdx-cli/bin/run login --help
+                node_modules/sfdx-cli/bin/run org login --help
         
