@@ -23,4 +23,4 @@ jobs:
             - name: Update bashrc
               run: echo PATH=~/cli/sf/bin:$PATH >> ~/.bashrc
             - name: Check the cli 
-              run: echo PATH=~/cli/sf/bin:$PATH >> ~/.bashrc
+              run: sf --version
