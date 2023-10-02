@@ -1,0 +1,18 @@
+{
+    "status": 0,
+    "result": {
+      "accessToken": "4567898fgvyhghyhjkjk78987654fghjhghjksyeyeyterwrwrjkopolkolkjhdhdhetet63547ruffjjffkkkei3387ur76r3gt3geghhdhffufkjn",
+      "id": "1165M000008j8oiRTY",
+      "instanceUrl": "http://scratch.my.example.com",
+      "loginUrl": "http://login-url.example.com",
+      "orgId": "11D4H000000gPr9LKJ",
+      "profileName": "System Administrator",
+      "username": "user-username123@test.com",
+      "alias": "nullNGnull",
+      "password": "8euffjfk8fjfu"
+    },
+    "warnings": [
+      "The --target-dev-hub flag is deprecated and is no longer used by this command. The flag will be removed in API version\n57.0 or later.",
+      "This command exposes sensitive information that allows for subsequent activity using your current authenticated session.\nSharing this information is equivalent to logging someone in under the current credential, resulting in unintended\naccess and escalation of privilege.\nFor additional information, review the authorization section of\nthe https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_web_flow.htm"
+    ]
+  }
