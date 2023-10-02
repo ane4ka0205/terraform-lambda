@@ -6,8 +6,7 @@ on:
     types: [closed]
 
 jobs:
-    # delete_open_scratch_logs:
-    if_merged:
+    delete_open_scratch_logs:
         if: github.event.pull_request.merged == true
         runs-on: ubuntu-latest
         steps:
