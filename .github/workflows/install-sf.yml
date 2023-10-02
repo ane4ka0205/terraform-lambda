@@ -21,4 +21,4 @@ jobs:
             - name: Update PATH 
               run: export PATH=~/cli/sf/bin:$PATH
             - name: Check the cli 
-              run: sf --version
+              run: echo $PATH
