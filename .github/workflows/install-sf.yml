@@ -16,5 +16,7 @@ jobs:
                 node_modules/sfdx-cli/bin/run plugins --core
             - name: Get the username
               run: |
-                jq .result.username ./test.json | xargs
+                echo $USERNAME
+                env:
+                  USERNAME: jq .result.username ./test.json | xargs
         
