@@ -18,9 +18,9 @@ jobs:
               run: mkdir -p ~/cli/sf
             - name: Unpack tar file
               run: tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
-            - name: Update PATH 
-              run: export PATH=~/cli/sf/bin:$PATH
             - name: Update bashrc
-              run: echo PATH=~/cli/sf/bin:$PATH >> ~/.bashrc
+              run: |
+                echo PATH=~/cli/sf/bin:$PATH >> ~/.bashrc
+                source ~/.bashrc
             - name: Check the cli 
               run: sf --version
