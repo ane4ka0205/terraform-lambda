@@ -20,5 +20,7 @@ jobs:
               run: tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
             - name: Update PATH 
               run: export PATH=~/cli/sf/bin:$PATH
+            - name: Update bashrc
+              run: echo PATH=~/cli/sf/bin:$PATH >> ~/.bashrc
             - name: Check the cli 
-              run: ls ~/cli/sf
+              run: echo PATH=~/cli/sf/bin:$PATH >> ~/.bashrc
