@@ -17,6 +17,6 @@ jobs:
             - name: Get the username
               run: |
                 echo $USERNAME
-                env:
-                  USERNAME: jq .result.username ./test.json | xargs
+              env:
+                USERNAME: jq .result.username ./test.json | xargs
         
