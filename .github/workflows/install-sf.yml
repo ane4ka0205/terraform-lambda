@@ -1,0 +1,24 @@
+name: Test
+on:
+  pull_request:
+    branches-ignore:
+      - "dependabot-updates"
+    types: [closed]
+
+jobs:
+    # delete_open_scratch_logs:
+    if_merged:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Install sf cli
+              run: wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
+            - name: Create folder
+              run: mkdir ~/cli/sf
+            - name: Unpack tar file
+              run: tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
+            - name: Update PATH 
+              run: export PATH=~/cli/sf/bin:$PATH
+            - name: Check the cli 
+              run: sf --version
