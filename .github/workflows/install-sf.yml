@@ -15,7 +15,7 @@ jobs:
             - name: Install sf cli
               run: wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
             - name: Create folder
-              run: mkdir ~/cli/sf
+              run: mkdir -p ~/cli/sf
             - name: Unpack tar file
               run: tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
             - name: Update PATH 
