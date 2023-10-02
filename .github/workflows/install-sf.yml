@@ -16,5 +16,8 @@ jobs:
                 npm install sfdx-cli
                 node_modules/sfdx-cli/bin/run --version
                 node_modules/sfdx-cli/bin/run plugins --core
-            - name: Check the cli 
-              run: node_modules/sfdx-cli/bin/run --version
+                node_modules/sfdx-cli/bin/run --version
+            - name: Check login
+              run: 
+                node_modules/sfdx-cli/bin/run login --help
+        
