@@ -3,20 +3,23 @@ on:
   repository_dispatch:
     types:
     - jenkins-triggered
-#   workflow_dispatch:
-#     inputs:
-    #   logLevel:
-    #     description: 'Log level'     
-    #     required: false
-    #     default: 'warning'
-#   pull_request:
-#     types: [closed]
 
 jobs:
     delete_open_scratch_logs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+            
+            - name: Install sf cli
+              run: |
+                npm install sfdx-cli
+                node_modules/sfdx-cli/bin/run --version
+                node_modules/sfdx-cli/bin/run plugins --core
+            - name: Get the username
+              run: |
+                echo "USERNAME=$(jq .result.username ./test.json | xargs)" >> $GITHUB_ENV
+            - name: Test
+              run: echo $USERNAME
             - name: Check PR Status
               id: pr_status
               run: |
@@ -33,23 +36,3 @@ jobs:
                 fi
               env:
                 PR_NUMBER: ${{ github.event.client_payload.pr_number }}
-            - name: Install sf cli
-              run: |
-                npm install sfdx-cli
-                node_modules/sfdx-cli/bin/run --version
-                node_modules/sfdx-cli/bin/run plugins --core
-            - name: Get the username
-              run: |
-                echo "USERNAME=$(jq .result.username ./test.json | xargs)" >> $GITHUB_ENV
-            - name: Test
-              run: echo $USERNAME
-            # - name: Check PR status
-            #   if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-            #   run: echo "hello"
-            # - uses: kceb/pull-request-url-action@v1
-            #   id: pr-url
-            
-            # - run: echo "${{ steps.pr-url.outputs.url }}"
-                  
-              #test
-        
