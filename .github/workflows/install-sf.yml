@@ -22,6 +22,9 @@ jobs:
                 echo "USERNAME=$(jq .result.username ./test.json | xargs)" >> $GITHUB_ENV
             - name: Test
               run: echo $USERNAME
+            - name: Do something
+              if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+              run: echo "hello"
                   
               
         
