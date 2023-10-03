@@ -6,6 +6,8 @@ on:
         description: 'Log level'     
         required: false
         default: 'warning'
+  pull_request:
+    types: [closed]
 
 jobs:
     delete_open_scratch_logs:
@@ -22,7 +24,7 @@ jobs:
                 echo "USERNAME=$(jq .result.username ./test.json | xargs)" >> $GITHUB_ENV
             - name: Test
               run: echo $USERNAME
-            - name: Do something
+            - name: Check PR status
               if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
               run: echo "hello"
                   
