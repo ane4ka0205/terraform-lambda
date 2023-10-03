@@ -1,8 +1,17 @@
 name: Test
 on:
-  push:
-    branches:
-        - "master"
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
+
+# env:
+#   TRIGGER: ${{ inputs.trigger }}
+#   desciption: ${{ inputs.desciption }}
 
 jobs:
     delete_open_scratch_logs:
@@ -17,7 +26,6 @@ jobs:
             - name: Get the username
               run: |
                 echo "USERNAME=$(jq .result.username ./test.json | xargs)" >> $GITHUB_ENV
-                env
             - name: Test
               run: echo $USERNAME
                   
