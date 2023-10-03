@@ -4,14 +4,8 @@ on:
     inputs:
       logLevel:
         description: 'Log level'     
-        required: true
+        required: false
         default: 'warning'
-      tags:
-        description: 'Test scenario tags'  
-
-# env:
-#   TRIGGER: ${{ inputs.trigger }}
-#   desciption: ${{ inputs.desciption }}
 
 jobs:
     delete_open_scratch_logs:
