@@ -1,19 +1,38 @@
 name: Test
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: false
-        default: 'warning'
-  pull_request:
-    types: [closed]
+  repository_dispatch:
+    types:
+    - jenkins-triggered
+#   workflow_dispatch:
+#     inputs:
+    #   logLevel:
+    #     description: 'Log level'     
+    #     required: false
+    #     default: 'warning'
+#   pull_request:
+#     types: [closed]
 
 jobs:
     delete_open_scratch_logs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+            - name: Check PR Status
+              id: pr_status
+              run: |
+                pr_number="${{ github.event.client_payload.pr_number }}"
+                pr_data=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number)
+                pr_state=$(echo "$pr_data" | jq -r .state)
+
+                if [ "$pr_state" == "open" ]; then
+                    echo "PR is open."
+                    # Add steps to run for open PRs
+                else
+                    echo "PR is closed."
+                    # Add steps to run for closed PRs
+                fi
+              env:
+                PR_NUMBER: ${{ github.event.client_payload.pr_number }}
             - name: Install sf cli
               run: |
                 npm install sfdx-cli
@@ -24,9 +43,13 @@ jobs:
                 echo "USERNAME=$(jq .result.username ./test.json | xargs)" >> $GITHUB_ENV
             - name: Test
               run: echo $USERNAME
-            - name: Check PR status
-              if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-              run: echo "hello"
+            # - name: Check PR status
+            #   if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+            #   run: echo "hello"
+            # - uses: kceb/pull-request-url-action@v1
+            #   id: pr-url
+            
+            # - run: echo "${{ steps.pr-url.outputs.url }}"
                   
               #test
         
