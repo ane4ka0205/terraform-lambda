@@ -38,7 +38,8 @@ jobs:
               env:
                 PR_NUMBER: ${{ github.event.client_payload.pr_number }}
             - name: Test var from curl 
-              run: env
+              run: |
+                echo "value is : ${{ secrets.TEST_VAR }}"
 
 
 # jobs:
