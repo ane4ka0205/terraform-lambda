@@ -39,7 +39,7 @@ jobs:
                 PR_NUMBER: ${{ github.event.client_payload.pr_number }}
             - name: Test var from curl 
               run: |
-                echo "value is : ${{ secrets.TEST_VAR }}"
+                echo "value is : ${{ vars.TEST_VAR }}"
 
 
 # jobs:
