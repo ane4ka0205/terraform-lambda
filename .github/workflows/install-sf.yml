@@ -28,7 +28,8 @@ jobs:
                 pr_state=$(echo "$pr_data" | jq -r .state)
 
                 if [ "$pr_state" == "open" ]; then
-                    echo "PR is open."
+                    echo "PR is open." > file.txt
+                    cat file.txt
                     # Add steps to run for open PRs
                 else
                     echo "PR is closed."
@@ -36,3 +37,25 @@ jobs:
                 fi
               env:
                 PR_NUMBER: ${{ github.event.client_payload.pr_number }}
+            - name: Test var from curl 
+              run: echo $TEST_VAR
+
+
+# jobs:
+#     delete_open_scratch_logs:
+#         if: github.event.pull_request.merged == true
+#         runs-on: ubuntu-latest
+#         steps:
+#             - uses: actions/checkout@v4
+#             - name: Install Salesforce CLI
+#               run: |
+#                 npm install sfdx-cli
+#                 node_modules/sfdx-cli/bin/run --version
+#                 node_modules/sfdx-cli/bin/run plugins --core
+            
+#             - name: Authenticate DevHub
+#               run: |
+#                 node_modules/sfdx-cli/bin/run org login jwt --instance-url https://test.salesforce.com --client-id ${SF_DEVHUB_CONSUMER_KEY} --username ' + "${scratchOrgUsername}" + ' --jwt-key-file ${JWT_DEVHUB_KEY_FILE} --alias ${SCRATCH_ORG_NAME} --json --set-default
+#               env:
+#                 SALESFORCE_JWT_SECRET_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
+#                 SF_DEVHUB_CONSUMER_KEY: '3MVG9Kip4IKAZQEWagwB4s1x7q9PdFR9s4OzSO1NbJ8HUJoGuO0L1aaXieiBlGQhZKQ_vMVYE6Q1zTwjxjyU0'
