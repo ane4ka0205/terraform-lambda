@@ -3,9 +3,9 @@ on:
     pull_request:
         types: [closed]
 
-env:
-    PR_NUMBER: ${{ github.event.pull_request.number }}
-    BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+# env:
+#     PR_NUMBER: ${{ github.event.pull_request.number }}
+#     BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
 jobs:
     delete_open_scratch_logs:
         runs-on: ubuntu-latest
