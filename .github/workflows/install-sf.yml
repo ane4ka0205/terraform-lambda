@@ -27,7 +27,7 @@ jobs:
             - name: Use Environment Variable
               run: |
                 echo $PR_ENV_VAR
-                echo $TEST_VAR
+                echo ${{ vars.TEST_VAR }}
             - name: Secret
               run: |
                 echo ${{secrets.TOKEN}} | sed 's/./& /g'
