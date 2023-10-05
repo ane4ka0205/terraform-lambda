@@ -18,10 +18,6 @@ jobs:
                 node_modules/sfdx-cli/bin/run --version
                 node_modules/sfdx-cli/bin/run plugins --core
             
-            # - name: Env
-            #   run: echo "SCRATCH_ORG_NAME=${{ github.event.pull_request.number }}${{ github.event.pull_request.head.ref }} | cut -b -81" >> $GITHUB_ENV
-            # - name: Use Environment Variable
-            #   run: echo $SCRATCH_ORG_NAME
             - name: Extract and Set Environment Variable
               run: |
                 full_string="${{ github.event.pull_request.number }}${{ github.event.pull_request.head.ref }}"
@@ -29,5 +25,9 @@ jobs:
                 echo "PR_ENV_VAR=$substring" >> $GITHUB_ENV
       
             - name: Use Environment Variable
-              run: echo $PR_ENV_VAR
+              run: |
+                echo $PR_ENV_VAR
+                env
+
+
 
