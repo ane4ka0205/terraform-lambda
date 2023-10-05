@@ -12,8 +12,15 @@ jobs:
     delete_open_scratch_logs:
         runs-on: ubuntu-latest
         steps:
+            - name: Find Comment
+              uses: peter-evans/find-comment@v2
+              id: fc
+              with:
+                issue-number: ${{ github.event.pull_request.number }}
+                body-includes: test123user
+            - run: |
+                echo ${{ steps.fc.outputs.comment-body }}
             - uses: actions/checkout@v4
-            
             - name: Install sf cli
               run: |
                 npm install sfdx-cli
