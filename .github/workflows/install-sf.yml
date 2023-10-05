@@ -7,7 +7,6 @@ on:
 #     - jenkins-triggered
 env:
     PR_NUMBER: ${{ github.event.pull_request.number }}
-    PR_NUMBER2: ${{ github.event.number }}
     BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
 jobs:
     delete_open_scratch_logs:
@@ -46,6 +45,6 @@ jobs:
             #   run: |
             #     echo "value is : ${{ vars.TEST_VAR }}"
             - name: Env
-              run: env
+              run: echo ${{ github.event.pull_request.number }}${{ github.event.pull_request.head.ref }}
         
 
