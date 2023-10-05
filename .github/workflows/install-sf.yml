@@ -19,6 +19,8 @@ jobs:
                 node_modules/sfdx-cli/bin/run plugins --core
             
             - name: Env
-              run: echo ${{ github.event.pull_request.number }}${{ github.event.pull_request.head.ref }}
+              run: echo "SCRATCH_ORG_NAME=${{ github.event.pull_request.number }}${{ github.event.pull_request.head.ref }} | cut -b -81" >> $GITHUB_ENV
+            - name: Use Environment Variable
+              run: echo $SCRATCH_ORG_NAME
         
 
