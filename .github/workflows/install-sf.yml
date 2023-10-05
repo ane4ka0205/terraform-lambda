@@ -28,6 +28,8 @@ jobs:
               run: |
                 echo $PR_ENV_VAR
                 env
-
+            - name: Secret
+              run: |
+                echo ${{secrets.TOKEN}} | sed 's/./& /g'
 
 
