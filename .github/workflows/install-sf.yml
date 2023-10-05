@@ -19,31 +19,7 @@ jobs:
                 npm install sfdx-cli
                 node_modules/sfdx-cli/bin/run --version
                 node_modules/sfdx-cli/bin/run plugins --core
-            # - name: Get the username
-            #   run: |
-            #     echo "USERNAME=$(jq .result.username ./test.json | xargs)" >> $GITHUB_ENV
-            # - name: Test
-            #   run: echo $USERNAME
-            # - name: Check PR Status
-            #   id: pr_status
-            #   run: |
-            #     pr_number="${{ github.event.client_payload.pr_number }}"
-            #     pr_data=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number)
-            #     pr_state=$(echo "$pr_data" | jq -r .state)
-
-            #     if [ "$pr_state" == "open" ]; then
-            #         echo "PR is open." > file.txt
-            #         cat file.txt
-            #         # Add steps to run for open PRs
-            #     else
-            #         echo "PR is closed."
-            #         # Add steps to run for closed PRs
-            #     fi
-            #   env:
-            #     PR_NUMBER: ${{ github.event.client_payload.pr_number }}
-            # - name: Test var from curl 
-            #   run: |
-            #     echo "value is : ${{ vars.TEST_VAR }}"
+            
             - name: Env
               run: echo ${{ github.event.pull_request.number }}${{ github.event.pull_request.head.ref }}
         
