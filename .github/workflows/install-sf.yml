@@ -2,6 +2,9 @@ name: Test
 on:
     pull_request:
         types: [closed]
+    push:
+        branches:
+        - '12feature-srini-Expire-Conditional-Offers-before-Deposit-cannot-be-scheduled-in-time-to-make-affordable'
 
 # env:
 #     PR_NUMBER: ${{ github.event.pull_request.number }}
