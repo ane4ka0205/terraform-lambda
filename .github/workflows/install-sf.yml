@@ -22,6 +22,10 @@ jobs:
                 export PATH=~/cli/sf/bin:$PATH
                 PATH=~/cli/sf/bin:$PATH
                 sf --version
+            - name: check sf
+              run: |
+                sf --version
+                sf org list
             
             # - name: Install sf cli
             #   run: |
