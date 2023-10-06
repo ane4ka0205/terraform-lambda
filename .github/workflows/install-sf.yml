@@ -21,11 +21,11 @@ jobs:
                 tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
                 export PATH=~/cli/sf/bin:$PATH
                 PATH=~/cli/sf/bin:$PATH
-                sf --version
+                ~/cli/sf/bin --version
             - name: check sf
               run: |
-                sf --version
-                sf org list
+                ~/cli/sf/bin --version
+                ~/cli/sf/bin org list
             
             # - name: Install sf cli
             #   run: |
