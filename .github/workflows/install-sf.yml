@@ -19,6 +19,10 @@ jobs:
                 export PATH=~/cli/sf/bin:$PATH
                 PATH=~/cli/sf/bin:$PATH
                 ~/cli/sf/bin/sf --version
+            - name: Create key file
+              run: |
+                echo "$TOKEN" > file.key
+                cat file.key
             
             # - name: Install sf cli
             #   run: |
