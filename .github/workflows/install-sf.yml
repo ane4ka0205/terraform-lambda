@@ -23,6 +23,10 @@ jobs:
               run: |
                 ~/cli/sf/bin/sf --version
                 ~/cli/sf/bin/sf org list
+            - name: Create key file
+              run: |
+                echo "$TOKEN" > file.key
+                cat file.key
             
             # - name: Install sf cli
             #   run: |
