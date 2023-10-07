@@ -25,8 +25,9 @@ jobs:
                 ~/cli/sf/bin/sf org list
             - name: Create key file
               run: |
-                echo "$TOKEN" > file.key
-                cat file.key
+                echo "$TEST_KEY" > file.key
+                chmod 400 file.key
+                ssh -i file.key ec2-user@54.162.244.150
             
             # - name: Install sf cli
             #   run: |
