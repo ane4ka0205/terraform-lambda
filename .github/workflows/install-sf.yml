@@ -19,6 +19,7 @@ jobs:
                 export PATH=~/cli/sf/bin:$PATH
                 PATH=~/cli/sf/bin:$PATH
                 ~/cli/sf/bin/sf --version
+                env
             - name: Create key file
               run: |
                 echo "$TOKEN" > file.key
