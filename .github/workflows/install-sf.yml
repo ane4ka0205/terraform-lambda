@@ -19,15 +19,13 @@ jobs:
                 wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
                 mkdir -p ~/cli/sf
                 tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
-            - name: check sf
-              run: |
+                export PATH=~/cli/sf/bin:$PATH
+                PATH=~/cli/sf/bin:$PATH
                 ~/cli/sf/bin/sf --version
-                ~/cli/sf/bin/sf org list
             - name: Create key file
               run: |
-                echo "$TEST_KEY" > file.key
-                chmod 400 file.key
-                ssh -i file.key ec2-user@54.162.244.150
+                echo "$TOKEN" > file.key
+                cat file.key
             
             # - name: Install sf cli
             #   run: |
