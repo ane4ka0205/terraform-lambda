@@ -26,7 +26,7 @@ jobs:
                 full_string="${{ github.event.pull_request.number }}NG${{ github.event.pull_request.head.ref }}"
                 substring=$(echo $full_string | sed 's/[^a-zA-Z0-9-]/-/g')
                 echo $substring
-                substring="${full_string:0:80}"
+                substring="${substring:0:80}"
                 echo "PR_ENV_VAR=$substring" >> $GITHUB_ENV
       
             - name: Use Environment Variable
