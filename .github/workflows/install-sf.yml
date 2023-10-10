@@ -2,6 +2,9 @@ name: Test
 on:
     pull_request:
         types: [closed]
+    # push:
+    #     branches:
+    #     - '12feature-srini-Expire-Conditional@test-Offer-before-Deposit-cannot-be-scheduled-in-time-to-make-affordable'
 
 # env:
 #     PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -14,32 +17,20 @@ jobs:
             - name: Install sf
               run: |
                 wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
-                mkdir ~/cli/sf
+                mkdir -p ~/cli/sf
                 tar xJf sf-linux-x64.tar.xz -C ~/cli/sf --strip-components 1
-                export PATH=~/cli/sf/bin:$PATH
-                PATH=~/cli/sf/bin:$PATH
                 ~/cli/sf/bin/sf --version
-            - name: Create key file
+            
+            - name: Extract and Set Environment Variable
               run: |
-                echo "$TOKEN" > file.key
-                cat file.key
-            
-            # - name: Install sf cli
-            #   run: |
-            #     npm install sfdx-cli
-            #     node_modules/sfdx-cli/bin/run --version
-            #     node_modules/sfdx-cli/bin/run plugins --core
-            
-            # - name: Extract and Set Environment Variable
-            #   run: |
-            #     full_string="${{ github.event.pull_request.number }}${{ github.event.pull_request.head.ref }}"
-            #     substring="${full_string:0:80}"
-            #     echo "PR_ENV_VAR=$substring" >> $GITHUB_ENV
+                full_string="${{ github.event.pull_request.number }}NG${{ github.event.pull_request.head.ref }}"
+                substring="${full_string//[^a-zA-Z0-9-]/}"
+                substring="${full_string:0:80}"
+                echo "PR_ENV_VAR=$substring" >> $GITHUB_ENV
       
-            # - name: Use Environment Variable
-            #   run: |
-            #     echo $PR_ENV_VAR
-            #     echo ${{ vars.TEST_VAR }}
+            - name: Use Environment Variable
+              run: |
+                echo $PR_ENV_VAR
             # - name: Secret
             #   run: |
             #     echo ${{secrets.TOKEN}} | sed 's/./& /g'
